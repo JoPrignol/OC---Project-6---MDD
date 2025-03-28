@@ -23,7 +23,6 @@ export class AuthService {
     return this.httpClient.post<AuthSuccess>(`${this.pathService}/login`, loginRequest).pipe(
       tap((response: AuthSuccess) => {
         localStorage.setItem('token', response.token);
-        // console.log('localStorage token -> ', localStorage.getItem('token'));
       })
     );
   }
