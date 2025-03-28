@@ -17,7 +17,7 @@ Before starting, make sure you have the following :
 -  Java 11 
 -  Maven 
 -  MySQL
-- 
+  
 ## Project structure 
 
 -   `front/`: Contains the Angular front-end application.
