@@ -39,7 +39,6 @@ import { MatIconModule } from '@angular/material/icon';
     ReactiveFormsModule,
     MatSidenavModule,
     MatIconModule,
-    // AuthModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
