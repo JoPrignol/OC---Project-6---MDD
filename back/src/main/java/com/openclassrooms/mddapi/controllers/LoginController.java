@@ -32,6 +32,9 @@ import com.openclassrooms.mddapi.services.DBUserService;
 import com.openclassrooms.mddapi.services.JWTService;
 
 
+/**
+ * Controller for handling authentication-related operations such as login, registration, and logout.
+ */
 @RestController
 public class LoginController {
 
@@ -47,11 +50,24 @@ public class LoginController {
   private final AuthenticationManager authenticationManager;
   public Logger logger = LoggerFactory.getLogger(LoginController.class);
 
+  /**
+   * Constructor for LoginController.
+   *
+   * @param jwtService The JWT service for token generation.
+   * @param authenticationManager The authentication manager for handling authentication.
+   */
   public LoginController(JWTService jwtService, AuthenticationManager authenticationManager) {
     this.jwtService = jwtService;
     this.authenticationManager = authenticationManager;
   }
 
+  /**
+   * Handles user login.
+   *
+   * @param loginRequest The login request containing user credentials.
+   * @return ResponseEntity containing the login response with a JWT token if authentication is successful.
+   * @throws BadCredentialsException if the provided credentials are invalid.
+   */
   @PostMapping("/api/auth/login")
   public ResponseEntity<LoginResponse> login(@RequestBody LoginRequest loginRequest) {
 
@@ -76,6 +92,12 @@ public class LoginController {
     }
   }
 
+  /**
+   * Handles user registration.
+   *
+   * @param newUser The registration request containing new user details.
+   * @return ResponseEntity containing the login response with a JWT token if registration is successful.
+   */
   @PostMapping("/api/auth/register")
   public ResponseEntity<LoginResponse> registerUser(@RequestBody RegisterRequest newUser) {
 
@@ -107,6 +129,13 @@ public class LoginController {
     }
   }
 
+  /**
+   * Handles user logout.
+   *
+   * @param request The HTTP request.
+   * @param response The HTTP response.
+   * @return ResponseEntity containing a success message if logout is successful.
+   */
   @PostMapping("/api/logout")
   public ResponseEntity<Map<String, String>> logout(HttpServletRequest request, HttpServletResponse response) {
       Authentication auth = SecurityContextHolder.getContext().getAuthentication();
