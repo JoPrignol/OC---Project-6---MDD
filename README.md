@@ -9,7 +9,7 @@ People can follow several subjects to get all the related articles. There's also
 
 To generate a documentation for the backend controllers run
 
-`mvn javadoc:javadoc``
+```mvn javadoc:javadoc```
 
 
 
