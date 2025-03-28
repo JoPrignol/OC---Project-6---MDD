@@ -17,6 +17,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.openclassrooms.mddapi.DTO.DBUserDTO;
 import com.openclassrooms.mddapi.services.DBUserService;
 
+/**
+ * REST controller for managing user-related operations.
+ */
 @RestController
 @RequestMapping("/api")
 public class DBUserController {
@@ -24,6 +27,12 @@ public class DBUserController {
   @Autowired
   private DBUserService DBUserService;
 
+  /**
+   * Get a user by their ID.
+   *
+   * @param id The ID of the user to retrieve.
+   * @return ResponseEntity containing the user data if found, or a 404 status if not found.
+   */
   @GetMapping(value = "/user/{id}", produces = "application/json")
   public ResponseEntity<Optional<DBUserDTO>> getUserById(@PathVariable Long id) {
 
@@ -37,6 +46,11 @@ public class DBUserController {
     return ResponseEntity.ok(dBUserDTO);
   }
 
+  /**
+   * Get the currently authenticated user.
+   *
+   * @return ResponseEntity containing the user data if authenticated, or a 401 status if not authenticated.
+   */
   @GetMapping("/auth/me")
   public ResponseEntity<Optional<DBUserDTO>> getCurrentUser() {
 
@@ -58,6 +72,13 @@ public class DBUserController {
     return ResponseEntity.ok(user);
   }
 
+  /**
+   * Updates a user's information.
+   *
+   * @param id The ID of the user to update.
+   * @param userDTO The updated user data.
+   * @return ResponseEntity containing the updated user data if found, or a 404 status if not found.
+   */
   @PutMapping("/user/{id}")
   public ResponseEntity<Optional<DBUserDTO>> updateUser(@PathVariable Long id, @RequestBody DBUserDTO userDTO) {
     Optional<DBUserDTO> updatedUser = DBUserService.updateUser(id, userDTO);

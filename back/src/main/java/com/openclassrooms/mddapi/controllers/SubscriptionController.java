@@ -25,6 +25,9 @@ import com.openclassrooms.mddapi.repository.DBUserRepository;
 import com.openclassrooms.mddapi.services.SubscriptionService;
 
 
+/**
+ * Controller for managing subscription-related operations.
+ */
 @RestController
 @RequestMapping("/api/subscriptions")
 public class SubscriptionController {
@@ -37,6 +40,12 @@ public class SubscriptionController {
   @Autowired
     private SubscriptionService subscriptionService;
 
+    /**
+     * Creates a new subscription for the authenticated user.
+     *
+     * @param requestBody The request body containing the topic ID.
+     * @return ResponseEntity containing the created subscription data.
+     */
     @PostMapping
     public ResponseEntity<SubscriptionDTO> createSubscription(@RequestBody Map<String, Long> requestBody) {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -66,6 +75,11 @@ public class SubscriptionController {
         return ResponseEntity.ok(createdSubscription);
     }
 
+    /**
+     * Retrieves all subscriptions for the authenticated user.
+     *
+     * @return ResponseEntity containing a list of the user's subscriptions.
+     */
     @GetMapping
     public ResponseEntity<List<SubscriptionDTO>> getUsersSubscriptions() {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -89,6 +103,12 @@ public class SubscriptionController {
       return ResponseEntity.ok(usersSubscriptions);
     }
 
+    /**
+     * Deletes a subscription for the authenticated user.
+     *
+     * @param topicId The ID of the topic to unsubscribe from.
+     * @return ResponseEntity containing a success message.
+     */
     @DeleteMapping
     public ResponseEntity<Map<String, String>> deleteSubscription(@RequestParam Long topicId) {
       Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

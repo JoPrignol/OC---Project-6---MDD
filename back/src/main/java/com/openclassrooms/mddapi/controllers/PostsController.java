@@ -26,6 +26,9 @@ import com.openclassrooms.mddapi.services.DBUserService;
 import com.openclassrooms.mddapi.services.PostService;
 
 
+/**
+ * Controller for managing posts-related operations.
+ */
 @RestController
 @RequestMapping("/api/posts")
 public class PostsController {
@@ -36,10 +39,23 @@ public class PostsController {
   @Autowired
   private DBUserRepository dbUserRepository;
 
+  /**
+   * Retrieves a list of posts for a specific user.
+   *
+   * @param userId The ID of the user whose posts are to be retrieved.
+   * @return A list of posts for the specified user.
+   */
   @GetMapping
   public List<PostDTO> getUsersFeed(@RequestParam Long userId) {
       return postService.getPostsByUserId(userId);
   }
+
+  /**
+   * Creates a new post.
+   *
+   * @param postDTO The post data to be created.
+   * @return ResponseEntity containing the created post data.
+   */
 
   @PostMapping
   public ResponseEntity<PostDTO> createPost(@RequestBody PostDTO postDTO) {
@@ -47,6 +63,12 @@ public class PostsController {
     return ResponseEntity.ok(createdPost);
   }
 
+  /**
+   * Get a post by its ID.
+   *
+   * @param postId The ID of the post to retrieve.
+   * @return ResponseEntity containing the post data if found.
+   */
   @GetMapping("/{postId}")
   public ResponseEntity<?> getPostById(@PathVariable Long postId) {
       PostDTO postDTO = postService.getPostById(postId);
@@ -62,6 +84,13 @@ public class PostsController {
       return ResponseEntity.ok(postMap);
   }
 
+  /**
+   * Creates a new comment for a specific post.
+   *
+   * @param postId The ID of the post to comment on.
+   * @param requestBody The request body containing the comment content.
+   * @return ResponseEntity containing the created comment data.
+   */
   @PostMapping("/{postId}/comments")
   public ResponseEntity<CommentDTO> createComment(
           @PathVariable Long postId,
