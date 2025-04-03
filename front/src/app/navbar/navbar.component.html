@@ -54,7 +54,7 @@
 
     <!-- liens desktop -->
     <div
-      *ngIf="!['/login', '/register'].includes(router.url) || !router"
+      *ngIf="isLogged()"
       class="hidden desktop:flex justify-between items-center gap-4"
     >
       <a class="text-md text-red font-bold cursor-pointer" (click)="logout()">

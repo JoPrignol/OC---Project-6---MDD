@@ -13,7 +13,7 @@ export class NavbarComponent implements OnInit {
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
-  constructor(public router: Router, private sessionService: SessionService) {}
+  constructor(public router: Router, private sessionService: SessionService, public authService: AuthService) {}
 
   ngOnInit(): void {
   }
@@ -30,5 +30,9 @@ export class NavbarComponent implements OnInit {
 
   closeSidenav() {
     this.sidenav.close();
+  }
+
+  isLogged() {
+    return this.authService.isAuthenticated();
   }
 }
