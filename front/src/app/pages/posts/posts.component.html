@@ -1,31 +1,31 @@
 <div class="flex flex-row w-full pt-8 px-8 justify-between">
   <button
-        mat-raised-button color="primary"
-        class="font-bold text-xl font-inter !rounded-md !py-1"
-        [routerLink]="['/post/create']"
-      >
-        Créer un article
-      </button>
-      <div
-        class="self-center flex flex-row gap-2"
-        (click)="toggleSortOrder()"
-      >
-        <p class="font-bold text-xl font-inter cursor-pointer">
-          Trier par
-        </p>
-        <p
-          class="font-thin text-xl font-inter cursor-pointer"
-          *ngIf="sortOrder"
-        >
-          &darr;
-        </p>
-        <p
-          class="font-thin text-xl font-inter cursor-pointer"
-          *ngIf="!sortOrder"
-        >
-          &uarr;
-        </p>
-      </div>
+    mat-raised-button color="primary"
+    class="font-bold text-xl font-inter !rounded-md !py-1"
+    [routerLink]="['/post/create']"
+  >
+    Créer un article
+  </button>
+  <div
+    class="self-center flex flex-row gap-2"
+    (click)="toggleSortOrder()"
+  >
+    <p class="font-bold text-xl font-inter cursor-pointer">
+      Trier par
+    </p>
+    <p
+      class="font-thin text-xl font-inter cursor-pointer"
+      *ngIf="sortOrder"
+    >
+      &darr;
+    </p>
+    <p
+      class="font-thin text-xl font-inter cursor-pointer"
+      *ngIf="!sortOrder"
+    >
+      &uarr;
+    </p>
+  </div>
 </div>
 <div
   *ngIf="posts.length > 0"

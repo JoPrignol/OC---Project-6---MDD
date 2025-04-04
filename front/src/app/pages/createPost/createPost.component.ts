@@ -5,7 +5,7 @@ import { Post } from 'src/app/models/post.model';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { User } from 'src/app/interfaces/user.interface';
 import { DEFAULT_POST } from 'src/app/models/post.model';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CommentService } from 'src/app/services/comments/comments.service';
 import { Topic } from 'src/app/models/topic.model';
 import { TopicsService } from 'src/app/services/topics/topics.service';
@@ -32,7 +32,8 @@ export class CreatePostComponent implements OnInit {
     private authService: AuthService,
     private route: ActivatedRoute,
     private fb: FormBuilder,
-    private topicsService: TopicsService
+    private topicsService: TopicsService,
+    public router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -100,6 +101,7 @@ export class CreatePostComponent implements OnInit {
         console.error('Erreur lors de la création du post', error);
       }
     );
+    this.router.navigate(['/posts']);
   }
 
   ngOnDestroy() {

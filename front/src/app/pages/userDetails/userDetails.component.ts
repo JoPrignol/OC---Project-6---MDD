@@ -32,7 +32,7 @@ export class UserDetailsComponent implements OnInit {
     private userService: UserService,
     private fb: FormBuilder,
     private topicsService: TopicsService,
-    private subscriptionService: SubscriptionService
+    private subscriptionService: SubscriptionService,
   ) {}
 
   ngOnInit(): void {
